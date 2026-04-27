@@ -34,7 +34,9 @@ MALT is intended for:
 
 ## Citation
 
-If you use MALT in academic work, please cite the software DOI and the relevant core publication(s). See `CITATION.cff` (will be added soon) for the preferred citation metadata.
+If you use MALT in academic work, please cite the software DOI and the relevant core publication(s). See `CITATION.cff` for the preferred citation metadata.
+
+[![DOI](https://zenodo.org/badge/798309171.svg)](https://doi.org/10.5281/zenodo.19829779)
 
 ## Status
 
