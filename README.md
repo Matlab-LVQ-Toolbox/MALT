@@ -38,6 +38,8 @@ If you use MALT in academic work, please cite the software DOI and the relevant 
 
 [![DOI](https://zenodo.org/badge/798309171.svg)](https://doi.org/10.5281/zenodo.19829779)
 
+Veen, R. J., Westerman, F., & Biehl, M. (2026). MALT - Matlab LVQ Toolbox (v0.3.1). Zenodo. https://doi.org/10.5281/zenodo.19829780
+
 ## Status
 
 MALT is in the process of being standardized, optimized and extended with different variants of LVQ. Other language versions with compatible API and numerically similar output are planned.
