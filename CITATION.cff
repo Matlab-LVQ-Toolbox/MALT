@@ -1,0 +1,38 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: MALT: Matlab LVQ Toolbox
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Roland J.
+    family-names: Veen
+    email: r.j.veen@rug.nl
+    affiliation: >-
+      University of Groningen, NL / MRC Laboratory of
+      Medical Sciences, UK
+    orcid: 'https://orcid.org/0000-0002-4733-189X'
+  - given-names: Floris
+    family-names: Westerman
+    affiliation: University of Groningen
+  - given-names: Michael
+    family-names: Biehl
+    email: m.biehl@rug.nl
+    affiliation: University of Groningen
+    orcid: 'https://orcid.org/0000-0001-5148-4568'
+repository-code: 'https://github.com/Matlab-LVQ-Toolbox/MALT'
+url: 'https://github.com/Matlab-LVQ-Toolbox'
+repository: 'https://www.cs.rug.nl/~biehl/gmlvq.html'
+abstract: 'A MATLAB Toolbox for LVQ variants, such as GMLVQ.'
+keywords:
+  - MATLAB
+  - GMLVQ
+  - GLVQ
+  - GRLVQ
+  - Prototype-based learning
+license: BSD-3-Clause
+version: 0.3.1
+date-released: '2026-04-27'
