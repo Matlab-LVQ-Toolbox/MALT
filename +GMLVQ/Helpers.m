@@ -4,7 +4,7 @@ classdef Helpers
         
         % Function to override the default values specified with key-value pairs
         function options = parseParameters(defaults, varargin)
-            optionNames = fieldnames(defaults);
+            optionNames = fieldnames(defaults); %Fix RJV change fieldnames to properties
             nArgs = length(varargin);
             if mod(nArgs, 2) ~= 0
                 error('Set key/value pairs as input parameters')
@@ -32,7 +32,7 @@ classdef Helpers
             warning('on', 'MATLAB:structOnObject');
             
             % Remove empty fields (without default values, they will be calculated later)
-            defaults = rmfield(defaults, names(structfun(@isempty, defaults)));
+            defaults = rmfield(defaults, names(structfun(@isempty, defaults))); %RJV prevented setting etam and etap
             
             % Call other function to parse the parameters
             params = GMLVQ.Helpers.parseParameters(defaults, varargin{:});

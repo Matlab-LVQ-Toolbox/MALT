@@ -6,46 +6,17 @@ This repository is the **canonical reference implementation** of MALT. It define
 
 `MALT` started as [A no-nonsense beginner’s tool for GMLVQ](https://www.cs.rug.nl/~biehl/gmlvq.html), and its maintenance and development were taken over by Roland Veen in 2021. The first release of the new package is now underway.
 
-## Position in the MALT ecosystem
-
-MALT will consist of three closely related repositories:
-
-- [`MALT`](https://github.com/Matlab-LVQ-Toolbox/MALT): canonical MATLAB implementation
-- [`MALT-PE`](https://github.com/MALT/maltpe): Python edition
-- [`MALT-RE`](https://github.com/MALT/maltre): R edition
-
-In the MALT ecosystem, **MATLAB is the source of truth**.
-
 ## Design goal
 
-The purpose of `malt` is not only to provide a MATLAB toolbox for LVQ, but also to define the reference behaviour for cross-language implementations.
+The purpose of `malt` is to provide a MATLAB toolbox for LVQ and variants, set up in a modular, object-oriented fashion. 
 
-This includes:
+We are careful to standardize the following aspects:
 - API design
 - algorithmic semantics
 - default parameter behavior
 - training and inference behaviour
 - numerical conventions
 - expected results on reference test cases
-
-## Ground-truth policy
-
-`MALT-PE` and `MALT-RE` are expected to reproduce the behaviour of `MALT` within documented numerical tolerance.
-
-Discrepancies beyond tolerance will be treated as implementation bugs unless explicitly documented.
-
-## Conformance dimensions
-
-Cross-language conformance is evaluated along three dimensions:
-
-1. **API conformance**  
-   Matching function names, argument semantics, defaults, and return values.
-
-2. **Behavioral conformance**  
-   Matching predictions, losses, learned quantities, and edge-case handling.
-
-3. **Numerical conformance**  
-   Matching outputs within documented floating-point tolerance.
 
 ## Intended audience
 
@@ -54,17 +25,12 @@ MALT is intended for:
 - students
 - scientific programmers
 - users who value interpretable LVQ methods
-- developers who need consistent behaviour across MATLAB, Python, and R
 
 ## Repository structure
 
-Future structure:
-
-- `src/` or MATLAB package folders for implementation
-- `tests/` for MATLAB tests
-- `testdata/` for golden inputs and expected outputs
-- `spec/` for canonical API and behaviour definitions
-- `docs/` for algorithms, numerics, and compatibility notes
+- `+GMLVQ/` Library namespace 
+- `manual` the manual
+- `samplesData/` example datasets in .mat format
 
 ## Citation
 
@@ -72,4 +38,4 @@ If you use MALT in academic work, please cite the software DOI and the relevant 
 
 ## Status
 
-MALT is the reference implementation and evolves first. New features should land here before being ported downstream.
+MALT is in the process of being standardized, optimized and extended with different variants of LVQ. Other language versions with compatible API and numerically similar output are planned.

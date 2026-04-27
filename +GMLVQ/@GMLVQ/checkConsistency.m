@@ -6,7 +6,9 @@ if gmlvq.data.nFeatureVectors ~= length(gmlvq.data.labels)
 end
 
 if gmlvq.nClasses > 2
+    warning off backtrace
     warning(['Multi-class problem. ROC analysis is for class ', num2str(gmlvq.params.rocClass), ' (neg.) vs. all others (pos.)']);
+    warning on backtrace
 end
 
 if length(unique(gmlvq.plbl)) ~= length(unique(gmlvq.data.labels))

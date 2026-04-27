@@ -4,9 +4,9 @@ classdef Run < matlab.mixin.Copyable
         gmlvq GMLVQ.GMLVQ
         
         trainingData GMLVQ.DataPair
-        trainingPerf (1,:) GMLVQ.Performance
+        trainingPerf (:,:) GMLVQ.Performance %RJV FIX Unreasonable Size constraint (1,:) -> (:,:)
         validationData GMLVQ.DataPair
-        validationPerf (1,:) GMLVQ.Performance
+        validationPerf (:,:) GMLVQ.Performance %RJV FIX Idem
         
         prototypes (:,:) { mustBeNumeric, mustBeFinite }
         lambda (:,:) { mustBeNumeric }
@@ -101,9 +101,36 @@ classdef Run < matlab.mixin.Copyable
                 = this.cost(dataPair, this.prototypes, sqrtm(this.lambda), 0);
         end
         
+        % Function to visualise the confusion matrix
+        % @param this GMLVQ.Run
+        % @param idx double
+        function visu_conf(this, idx) %RJV
+            %   VISU_CONF visualize the confusion matrix. 
+            %   requires Deep Learning Toolbox.
+            %   See also: plotconfusion
+            if nargin < 2
+                idx = length(this.trainingPerf);
+                title = 'Final';
+            else
+                title = sprintf('Run %d', idx);
+            end
+            GMLVQ.Util.confplot(this.trainingPerf(idx).confusionMatrix, title);
+        end
+        
+        function visu_conf_ani(this) %RJV
+            idx = length(this.trainingPerf);
+            for i = 1:idx-1
+                this.visu_conf(i);
+                pause(0.1);
+            end
+            this.visu_conf();
+        end
+        
         % These functions are in other files
         plot(this);
         visu_2d(this);
+        
+        plotconf(this, type, stepID, suffix);
     end
     
     % These methods are only accessible by the listed classes and their
@@ -165,5 +192,5 @@ classdef Run < matlab.mixin.Copyable
         [prototypes, omegaMatrix] = setInitialPrototypes(this);
         [costFunction, crispOut, margins, score] = cost(this, dataPair, prototypes, omegaMatrix, customMu);
         [prototypes, omegaMatrix] = doBatchStep(this, prototypes, omegaMatrix);
-    end
+    end    
 end

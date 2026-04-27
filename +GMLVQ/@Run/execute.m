@@ -107,3 +107,5 @@ res = GMLVQ.Result;
 res.run = this;
 res.stepsizeMatrix = stepsizeMatrix;
 res.stepsizePrototypes = stepsizePrototypes;
+
+end

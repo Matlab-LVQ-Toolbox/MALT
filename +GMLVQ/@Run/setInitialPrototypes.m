@@ -5,6 +5,9 @@
 % @out omegaMatrix
 function [prototypes, omegaMatrix] = setInitialPrototypes(this)
 
+% RJV Repeat warnings and checks here
+this.gmlvq.params.sanityCheck();
+
 prototypes = zeros(this.nPrototypes, this.nDimensions);
 
 % Compute class-conditional means
@@ -23,6 +26,8 @@ if this.gmlvq.params.useKMeans
         options = statset('UseParallel', 1, 'UseSubstreams', 1, 'Streams', stream);
         noPrototypes = sum(this.gmlvq.plbl == i);
 
+        % RJV Editor's Note: kmeans will automatically use Parallel Toolbox
+        % if installed.
         [~, prototypes(this.gmlvq.plbl == i,:)] = kmeans(this.trainingData.featureVectors(this.trainingData.labels == i,:), noPrototypes,...
             'Options', options, 'Replicates', 5);
     end

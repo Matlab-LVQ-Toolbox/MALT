@@ -4,11 +4,11 @@ classdef GMLVQ < matlab.mixin.Copyable
     properties
         data GMLVQ.DataPair
         totalsteps (1,1) { mustBeInteger }
-        plbl (:,1) { mustBeInteger }
+        plbl (:,1) { mustBeInteger } %RJV TODO: Make dependent public set/get method with private var
         params (1,1) GMLVQ.Parameters
     end
     
-    properties (SetAccess = private)
+    properties (SetAccess = private) %FIX RJV Do not save/load these as they are stored with plbl
         nPrototypes = 0
         nClasses = 0
     end

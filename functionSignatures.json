@@ -39,7 +39,7 @@
 
     "GMLVQ.GMLVQ.runL1O": {
         "inputs": [
-            { "name": "this", "kind": "required", "type": ["GMLVQ.GMVLQ", "scalar"] }
+            { "name": "this", "kind": "required", "type": ["GMLVQ.GMLVQ", "scalar"] }
         ]
     },
 
@@ -89,7 +89,7 @@
 
     "GMLVQ.Run": {
         "inputs": [
-            { "name": "gmlvq", "kind": "required", "type": ["GMLVQ.GMVLQ", "scalar"] },
+            { "name": "gmlvq", "kind": "required", "type": ["GMLVQ.GMLVQ", "scalar"]},
             { "name": "trainingData", "kind": "required", "type": ["GMLVQ.DataPair", "scalar"] },
             { "name": "validationData", "kind": "required", "type": ["GMLVQ.DataPair", "scalar"] }
         ]
@@ -136,6 +136,15 @@
         ]
     },
 
+    "GMLVQ.Run.plotconf": {
+        "inputs": [
+            { "name": "this", "kind": "required", "type": ["GMLVQ.Run"] },
+            { "name": "type", "kind": "ordered", "type": ["choices:{'training','validation'}"] },
+            { "name": "stepID", "kind": "ordered", "type": ["integer"] },
+            { "name": "suffix", "kind": "ordered", "type": ["logical"] }
+        ]
+    },
+
     "GMLVQ.Run.setInitialPrototypes": {
         "inputs": [
             { "name": "this", "kind": "required", "type": ["GMLVQ.Run", "scalar"] }
@@ -144,7 +153,7 @@
     
     "GMLVQ.Run.zScore": {
         "inputs": [
-            { "name": "this", "kind": "required", "type": ["GMVLQ.Run", "scalar"] },
+            { "name": "this", "kind": "required", "type": ["GMLVQ.Run", "scalar"] },
             { "name": "dataPair", "kind": "required", "type": ["GMLVQ.DataPair", "scalar"] }
         ]
     }

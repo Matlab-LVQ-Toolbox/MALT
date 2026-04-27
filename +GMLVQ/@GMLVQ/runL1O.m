@@ -14,12 +14,16 @@ nRuns = this.data.nFeatureVectors; % Each run we omit one sample
 scoreval = zeros(1, this.data.nFeatureVectors); % Score of the left out example
 lambda = zeros(nRuns, this.nDimensions, this.nDimensions);
 protos = zeros(nRuns, this.nPrototypes, this.nDimensions);
+confmat = zeros(nRuns, this.nClasses, this.nClasses);
 
 results = GMLVQ.Result.empty(0, nRuns);
 
 disp(['Learning curves, averages over ', num2str(nRuns), ' L1O runs']);
 
+%ADD RJV Calculate validation confusion matrix from remaining protos?
+
 % Do the runs
+% tic
 parfor krun = 1 : nRuns
     disp(['Leave one out: ', num2str(krun), ' of ', num2str(nRuns)]);
     
@@ -36,11 +40,17 @@ parfor krun = 1 : nRuns
     result = run.execute();
     
     % We retrieve the score of the omitted data
-    [~, ~, ~, scoreval(krun)] = result.run.classify(validationData);
+    [~, crout, ~, scoreval(krun)] = result.run.classify(validationData);
+    
+    amat = zeros(this.nClasses, this.nClasses);
+    amat(lblout,crout) = 1;
+    confmat(krun, :,:) = amat; %RJV calculate confmat
+    
     protos(krun, :, :) = result.run.prototypes;
     lambda(krun, :, :) = result.run.lambda;
     results(krun) = result;
 end
+% fprintf('[Runs] '); toc
 
 % Sort and average prototypes properly
 wm = squeeze(protos(1,:,:)) / nRuns;
@@ -89,7 +99,8 @@ averageRun.validationPerf(1).tpr = tpr;
 averageRun.validationPerf(1).fpr = fpr;
 averageRun.validationPerf(1).auroc = auroc;
 averageRun.validationPerf(1).thresholds = thresholds;
-
+averageRun.validationPerfConfusionMatrix{1} = squeeze(sum(confmat,1));
+averageRun.validationPerf(1).confusionMatrix = averageRun.validationPerfConfusionMatrix{1} / nRuns;
 res.averageRun = averageRun;
 
 end

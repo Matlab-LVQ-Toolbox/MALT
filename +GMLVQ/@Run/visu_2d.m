@@ -23,30 +23,30 @@ for i=1:this.nPrototypes
 end
 
 % define symbols and colors for up to 7 classes  (prototypes)
-symbstrings = ['b';'r';'g';'c';'m';'y';'k'];   
+symbstrings = GMLVQ.Util.consistentColorList(); %['b';'r';'g';'c';'m';'y';'k']; FIX Consistent Colors  
 lgstr = [];   % initialize legend as empty text
 for ip=1:this.nPrototypes
     plot(projw(ip,1), projw(ip,2),'ko',...            % plot prototype
         'MarkerSize',10,...                           % large symbol in
-        'MarkerFaceColor',symbstrings(this.gmlvq.plbl(ip),1));   % color acc. to 
+        'MarkerFaceColor',symbstrings{this.gmlvq.plbl(ip),1});   % color acc. to 
     hold on;                                          % prototype label
     lgstr = [lgstr;num2str(this.gmlvq.plbl(ip))]; 
 end
 
 % define symbols and colors for up to 7 classes  (data points)
-symbstrings = ['bo';'ro';'go';'co';'mo';'yo';'ko']; 
+%symbstrings = ['bo';'ro';'go';'co';'mo';'yo';'ko']; 
 for i=1:this.trainingData.nFeatureVectors
     plot(proj(i,1),proj(i,2),'ko',... % symbstrings(lbl(i),:),...
-        'MarkerFaceColor',symbstrings(this.trainingData.labels(i))); % plot data points 
+        'MarkerFaceColor',symbstrings{this.trainingData.labels(i)}); % plot data points 
     % optional: mark samples by their number 
     %  text(proj(i,1)+0.1,proj(i,2),num2str(i));
 end
 
 % plot prototypes again to make them visible on top of data, larger now
-symbstrings = ['b';'r';'g';'c';'m';'y';'k']; % up to 7 classes
+% symbstrings = ['b';'r';'g';'c';'m';'y';'k']; % up to 7 classes
 for ip=1:this.nPrototypes
     plot(projw(ip,1), projw(ip,2),'ko',...
-        'MarkerSize',20,'MarkerFaceColor',symbstrings(this.gmlvq.plbl(ip)));
+        'MarkerSize',20,'MarkerFaceColor',symbstrings{this.gmlvq.plbl(ip)});
     %  plot(projw(ip,1), projw(ip,2),'wp',...
     %      'MarkerSize',8); % 'MarkerFaceColor','w');     
 end

@@ -30,12 +30,12 @@ protos = zeros(nRuns, this.nPrototypes, this.nDimensions);
 results = GMLVQ.Result.empty(0, nRuns);
 
 % Do the validation runs
-parfor krun = 1 : nRuns
+parfor (krun = 1 : nRuns) % set , 0 for serial work or , inf for default
     disp(['Validation run ', num2str(krun), ' of ', num2str(nRuns)]);
     
     % We create a random partition of the data into a testing and training set. The stratify option
     % indicates whether all classes should be equally represented (relative) or not.
-    partition = cvpartition(this.data.labels, 'HoldOut', percentage / 100, 'Stratify', true);
+    partition = cvpartition(this.data.labels, 'HoldOut', percentage / 100, 'Stratify', true); %!ok<PFBNS>
     
     trainingLabels = this.data.labels(partition.training(1));
     trainingFV = this.data.featureVectors(partition.training(1),:);
